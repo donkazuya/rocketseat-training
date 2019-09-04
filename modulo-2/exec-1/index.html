@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button style="display: block">Me Aperte</button>
+    </div>
+
+    <script>
+        var app = document.querySelector('#app');
+        var btn = document.querySelector('#app button');
+        
+
+        function criarQuadrado() {
+            var box = document.createElement('div');
+
+            box.style.width = '100px';
+            box.style.height = '100px';
+            box.style.backgroundColor = getRandomColor();
+            box.style.margin = "5px";
+            box.style.lineHeight = "0px";
+
+            box.style.display = 'inline-block';
+
+            app.appendChild(box);
+
+            box.onmouseover = function() {
+                box.style.backgroundColor = getRandomColor();
+            }
+
+        }
+
+        function getRandomColor() {  
+            var letters = "0123456789ABCDEF";  
+            var color = "#";  
+            for (var i = 0; i < 6; i++) {    
+                color += letters[Math.floor(Math.random() * 16)];  
+            }  
+
+            return color;
+        }
+        btn.onclick = criarQuadrado;
+    </script>
+</body>
+</html>
