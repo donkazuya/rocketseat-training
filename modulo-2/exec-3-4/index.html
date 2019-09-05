@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul></ul>
+
+        <input type="text" id="addNome">
+        <button>Add Nome</button>
+    </div>
+
+    <script>
+        var boxContainer = document.querySelector("#app");
+        var elementList = document.querySelector("#app ul");
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+        var elementInput = document.querySelector("#addNome");
+        var btn = document.querySelector("button");
+
+        function renderList() {
+            elementList.innerHTML = "";
+
+            for(listNome of nomes) {
+                var createItemList = document.createElement('li');
+                var createListText = document.createTextNode(listNome);
+
+                createItemList.appendChild(createListText);
+                elementList.appendChild(createItemList);
+            }
+        }
+
+        renderList();
+
+        function addItemList() {
+            var capInput = elementInput.value;
+
+            nomes.push(capInput);
+            elementInput.value = "";
+            renderList();
+        }
+
+        btn.onclick = addItemList;
+
+
+     </script>
+</body>
+</html>
