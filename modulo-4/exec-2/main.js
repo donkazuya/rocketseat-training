@@ -12,7 +12,15 @@ function renderList() {
 
     xhr.onreadystatechange = function() {
          if (xhr.readyState === 4) {
-             console.log(JSON.parse(xhr.responseText));
+            var results = (JSON.parse(xhr.responseText));
+            console.log(results)
+            for (listResults of results) {
+                var createElementList = document.createElement('li');
+                var createListText = document.createTextNode(listResults.name);
+
+                createElementList.appendChild(createListText);
+                listElement.appendChild(createElementList);
+            }
          }
     }
 }
