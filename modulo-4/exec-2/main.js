@@ -1,6 +1,6 @@
 var elementInput = document.querySelector('#app #user');
 var btnElement = document.querySelector('#app button');
-var listElement = document.querySelector('#app ul');
+var app = document.querySelector('#app');
 var mainElement = document.querySelector('#profile');
 
 
@@ -13,7 +13,7 @@ function renderImage() {
     xhr.open('GET', 'https://api.github.com/users/'+user);
     xhr.send(null);
 
-    if(xhr.status === 200) {
+    // if(xhr.status === 200) {
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4) {
                 var results = (JSON.parse(xhr.responseText));
@@ -29,14 +29,16 @@ function renderImage() {
             }
         }
         renderList();
-    }
-    else {
-        alert("Usuário Não Encontrado");
-        elementInput.value = ""
-    }
+    //}
+    // else {
+    //     alert("Usuário Não Encontrado");
+    //     elementInput.value = ""
+    // }
 }
 
 function renderList() {
+    var listElement = document.createElement('ul');
+    
     var xhr = new XMLHttpRequest();
 
     var user = elementInput.value;
@@ -48,8 +50,9 @@ function renderList() {
          if (xhr.readyState === 4) {
             var results = (JSON.parse(xhr.responseText));
             console.log(results);
-           
+            
             for (listResults of results) {
+                
                 var createElementList = document.createElement('li');
                 var createListText = document.createTextNode(listResults.name);
                 var createLink = document.createElement('a');
@@ -60,10 +63,18 @@ function renderList() {
                 createLink.appendChild(createListText);
                 createElementList.appendChild(createLink);
                 listElement.appendChild(createElementList);
+                app.appendChild(listElement);
             }
          }
     }
     elementInput.value = ""
+}
+
+function refreshList() {
+    var pickList = document.querySelector("#app ul");
+    console.log(pickList);
+    pickList.remove();
+    mainElement.innerHTML = ""
 }
 
 btnElement.onclick = renderImage;
