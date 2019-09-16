@@ -13,12 +13,22 @@ function renderList() {
     xhr.onreadystatechange = function() {
          if (xhr.readyState === 4) {
             var results = (JSON.parse(xhr.responseText));
-            console.log(results)
+            console.log(results);
+            var createDiv = document.createElement('div');
+
+            createDiv.style.height = "100px";
+            createDiv.style.width = "100px";
+            createDiv.style.backgroundColor = "#f0f";
             for (listResults of results) {
                 var createElementList = document.createElement('li');
                 var createListText = document.createTextNode(listResults.name);
+                var createLink = document.createElement('a');
 
-                createElementList.appendChild(createListText);
+                createLink.setAttribute('href', listResults.html_url);
+                createLink.setAttribute('target', '_blank');
+
+                createLink.appendChild(createListText);
+                createElementList.appendChild(createLink);
                 listElement.appendChild(createElementList);
             }
          }
