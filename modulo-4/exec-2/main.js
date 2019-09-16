@@ -3,6 +3,7 @@ var btnElement = document.querySelector('#app button');
 var listElement = document.querySelector('#app ul');
 var mainElement = document.querySelector('#profile');
 
+
 function renderImage() {
     
     var xhr = new XMLHttpRequest();
@@ -12,21 +13,27 @@ function renderImage() {
     xhr.open('GET', 'https://api.github.com/users/'+user);
     xhr.send(null);
 
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4) {
-            var results = (JSON.parse(xhr.responseText));
-            var createImg = document.createElement('img');
-            var createTitle = document.createElement('h1');
-            var titleText = document.createTextNode(results.name);
-            console.log(results);
-
-            createImg.setAttribute('src', results.avatar_url);
-            mainElement.prepend(createImg);
-            createTitle.appendChild(titleText);
-            mainElement.appendChild(createTitle); 
+    if(xhr.status === 200) {
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4) {
+                var results = (JSON.parse(xhr.responseText));
+                var createImg = document.createElement('img');
+                var createTitle = document.createElement('h1');
+                var titleText = document.createTextNode(results.name);
+                console.log(results);
+    
+                createImg.setAttribute('src', results.avatar_url);
+                mainElement.prepend(createImg);
+                createTitle.appendChild(titleText);
+                mainElement.appendChild(createTitle); 
+            }
         }
+        renderList();
     }
-    renderList();
+    else {
+        alert("Usuário Não Encontrado");
+        elementInput.value = ""
+    }
 }
 
 function renderList() {
