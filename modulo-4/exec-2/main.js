@@ -16,9 +16,14 @@ function renderImage() {
         if(xhr.readyState === 4) {
             var results = (JSON.parse(xhr.responseText));
             var createImg = document.createElement('img');
+            var createTitle = document.createElement('h1');
+            var titleText = document.createTextNode(results.name);
+            console.log(results);
 
             createImg.setAttribute('src', results.avatar_url);
-            mainElement.prepend(createImg); 
+            mainElement.prepend(createImg);
+            createTitle.appendChild(titleText);
+            mainElement.appendChild(createTitle); 
         }
     }
     renderList();
@@ -51,6 +56,7 @@ function renderList() {
             }
          }
     }
+    elementInput.value = ""
 }
 
 btnElement.onclick = renderImage;
