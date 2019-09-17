@@ -29,7 +29,7 @@ function renderImage() {
             }
         }
         renderList();
-    //}
+    // }
     // else {
     //     alert("Usuário Não Encontrado");
     //     elementInput.value = ""
@@ -77,4 +77,12 @@ function refreshList() {
     mainElement.innerHTML = ""
 }
 
-btnElement.onclick = renderImage;
+btnElement.onclick = function() {
+    if (mainElement.hasChildNodes()) {
+        refreshList();
+        renderImage();
+    }
+    else {
+        renderImage();
+    }
+};
