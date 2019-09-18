@@ -4,7 +4,7 @@ body {
     font-family: 'Titillium Web', sans-serif;
 }
 #app {
-    width: 600px;
+    max-width: 600px;
     margin: 8% auto;
     text-align: center;
     background-color: #ccc;
@@ -18,7 +18,7 @@ body {
 }
 
 #app #profile img {
-    width: 300px;
+    max-width: 300px;
     border-radius: 50%;
 }
 
